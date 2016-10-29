@@ -8,7 +8,7 @@ namespace MFT
     {
         public Mft(byte[] rawbytes)
         {
-            FileRecords = new List<FileRecord>();
+            FileRecords = new List<FileRecord>(); //new Dictionary<int, FileRecord>();
 
             var blockSize = 1024;
 

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
-using System.Diagnostics;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
@@ -12,16 +10,9 @@ namespace MFT.Test
     [TestFixture]
     public class TestMain
     {
-        public static string Mft1 = @"..\..\TestFiles\$MFT";
-        public static string Mft2 = @"D:\Code\MFT\MFT.Test\TestFiles\$MFT";
-        public static string Mft3 = @"D:\Temp\$MFT";
-
-        public Dictionary<string,string> mfts = new Dictionary<string, string>();
-
         [SetUp]
         public void Setup()
         {
-
             var config = new LoggingConfiguration();
             var loglevel = LogLevel.Info;
 
@@ -46,21 +37,23 @@ namespace MFT.Test
 
             mfts = new Dictionary<string, string>();
 
-       //     mfts.Add("controller", @"D:\Dropbox\MFTs\controller\$MFT");
-         //   mfts.Add("nfury", @"D:\Dropbox\MFTs\nfury\$MFT");
-           // mfts.Add("nromanoff", @"D:\Dropbox\MFTs\nromanoff\$MFT");
+            //     mfts.Add("controller", @"D:\Dropbox\MFTs\controller\$MFT");
+            //   mfts.Add("nfury", @"D:\Dropbox\MFTs\nfury\$MFT");
+            // mfts.Add("nromanoff", @"D:\Dropbox\MFTs\nromanoff\$MFT");
             mfts.Add("tdungan", @"..\..\TestFiles\tdungan\$MFT");
             //mfts.Add("blake", @"D:\Dropbox\MFTs\blake\$MFT");
             mfts.Add("other", @"..\..\TestFiles\$MFT");
-
-
         }
+
+        public static string Mft1 = @"..\..\TestFiles\$MFT";
+        public static string Mft2 = @"D:\Code\MFT\MFT.Test\TestFiles\$MFT";
+        public static string Mft3 = @"D:\Temp\$MFT";
+
+        public Dictionary<string, string> mfts = new Dictionary<string, string>();
 
         [Test]
         public void Something()
         {
-       
-
             var logger = LogManager.GetCurrentClassLogger();
 
             foreach (var mft in mfts)
@@ -68,7 +61,7 @@ namespace MFT.Test
                 logger.Info($"Processing {mft.Key}");
 
                 var start = DateTimeOffset.Now;
-                
+
 
                 var m2 = MftFile.Load(mft.Value);
 
@@ -77,13 +70,7 @@ namespace MFT.Test
                 var dif = end.Subtract(start).TotalSeconds;
 
                 logger.Info($"Took {dif} seconds to process '{mft.Key}'\r\n");
-
             }
-
-
-           
-
-    
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using MFT.Attributes;
 using NLog;
 
@@ -8,8 +7,6 @@ namespace MFT
 {
     public class FileRecord
     {
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
         [Flags]
         public enum EntryFlag
         {
@@ -18,6 +15,8 @@ namespace MFT
             Unknown0 = 0x4,
             Unknown1 = 0x8
         }
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         private readonly int _baadSig = 0x44414142;
         private readonly int _fileSig = 0x454c4946;
@@ -86,14 +85,18 @@ namespace MFT
             var x1FeValue = BitConverter.ToInt16(rawBytes, 0x1FE);
             var x3FeValue = BitConverter.ToInt16(rawBytes, 0x3FE);
 
-            if (x1FeValue != expectedFixupVal && ((EntryFlags & EntryFlag.FileRecordSegmentInUse) == EntryFlag.FileRecordSegmentInUse))
+            if ((x1FeValue != expectedFixupVal) &&
+                ((EntryFlags & EntryFlag.FileRecordSegmentInUse) == EntryFlag.FileRecordSegmentInUse))
             {
-                Logger.Warn($"FILE record at offset 0x{offset:X}! Fixup values do not match at 0x1FE. Expected: {expectedFixupVal}, actual: {x1FeValue}, EntryFlags: {EntryFlags}");
+                Logger.Warn(
+                    $"FILE record at offset 0x{offset:X}! Fixup values do not match at 0x1FE. Expected: {expectedFixupVal}, actual: {x1FeValue}, EntryFlags: {EntryFlags}");
             }
 
-            if (x3FeValue != expectedFixupVal && ((EntryFlags & EntryFlag.FileRecordSegmentInUse) == EntryFlag.FileRecordSegmentInUse))
+            if ((x3FeValue != expectedFixupVal) &&
+                ((EntryFlags & EntryFlag.FileRecordSegmentInUse) == EntryFlag.FileRecordSegmentInUse))
             {
-                Logger.Warn($"FILE record at offset 0x{offset:X}! Fixup values do not match at 0x3FE. Expected: {expectedFixupVal}, actual: {x3FeValue}, EntryFlags: {EntryFlags}");
+                Logger.Warn(
+                    $"FILE record at offset 0x{offset:X}! Fixup values do not match at 0x3FE. Expected: {expectedFixupVal}, actual: {x3FeValue}, EntryFlags: {EntryFlags}");
             }
 
             //header is done, replace fixup bytes with actual bytes
@@ -120,7 +123,8 @@ namespace MFT
 //                    attrSize = BitConverter.ToInt16(rawBytes, index + 4);
 //                }
 
-                Logger.Trace($"ActualRecordSize: {ActualRecordSize} attrType: 0x{attrType:X}, size: {attrSize}, index: {index}, offset: 0x{offset:x}, i+o: 0x{(index + offset):X}");
+                Logger.Trace(
+                    $"ActualRecordSize: {ActualRecordSize} attrType: 0x{attrType:X}, size: {attrSize}, index: {index}, offset: 0x{offset:x}, i+o: 0x{index + offset:X}");
 
                 if ((attrSize == 0) || (attrType == -1))
                 {
@@ -202,7 +206,7 @@ namespace MFT
                         break;
 
                     default:
-                        Logger.Warn($"Unhandled attribute tyoe! Add me: {(AttributeType)attrType}");
+                        Logger.Warn($"Unhandled attribute tyoe! Add me: {(AttributeType) attrType}");
                         throw new Exception($"Add me: {(AttributeType) attrType}");
                         break;
                 }
@@ -212,7 +216,7 @@ namespace MFT
             }
 
             //rest is slack. handle here?
-            Logger.Trace($"Slack starts at {index} i+o: 0x{(index + offset):X}");
+            Logger.Trace($"Slack starts at {index} i+o: 0x{index + offset:X}");
         }
 
         public List<Attribute> Attributes { get; }

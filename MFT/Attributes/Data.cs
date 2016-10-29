@@ -2,9 +2,6 @@
 {
     public class Data : Attribute
     {
-        public ResidentData ResidentData { get; }
-        public NonResidentData NonResidentData { get; }
-
         public Data(byte[] rawBytes) : base(rawBytes)
         {
             if (NonResident)
@@ -15,8 +12,9 @@
             {
                 ResidentData = new ResidentData(rawBytes);
             }
-
-
         }
+
+        public ResidentData ResidentData { get; }
+        public NonResidentData NonResidentData { get; }
     }
 }

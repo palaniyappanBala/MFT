@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MFT.Attributes
 {
     public class ResidentData
     {
-        public byte[] Data { get; }
-        public string Name { get; }
-
         public ResidentData(byte[] rawBytes)
         {
             var contentLength = BitConverter.ToUInt16(rawBytes, 0x10);
@@ -22,7 +15,6 @@ namespace MFT.Attributes
 
             Name = string.Empty;
 
-        
 
             if (nameLen > 0)
             {
@@ -30,12 +22,11 @@ namespace MFT.Attributes
             }
 
 
-
             Data = new byte[contentLength];
-            Buffer.BlockCopy(rawBytes,contentOffset,Data,0,contentLength);
-
-
-
+            Buffer.BlockCopy(rawBytes, contentOffset, Data, 0, contentLength);
         }
+
+        public byte[] Data { get; }
+        public string Name { get; }
     }
 }

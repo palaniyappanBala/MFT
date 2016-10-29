@@ -28,7 +28,7 @@ namespace MFT
     {
         IsCompressed = 0x01,
         IsEncrypted = 0x4000,
-        IsSparse = 0x8000,
+        IsSparse = 0x8000
     }
 
     public abstract class Attribute
