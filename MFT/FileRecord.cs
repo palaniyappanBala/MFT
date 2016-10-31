@@ -204,15 +204,17 @@ namespace MFT
                         break;
 
                     case AttributeType.Ea:
-
+                        var ea = new ExtendedAttribute(rawAttr);
+                        Attributes.Add(ea);
                         break;
 
                     case AttributeType.EaInformation:
-
+                        var eai = new ExtendedAttributeInformation(rawAttr);
+                        Attributes.Add(eai);
                         break;
 
                     default:
-                        Logger.Warn($"Unhandled attribute tyoe! Add me: {(AttributeType) attrType}");
+                        Logger.Warn($"Unhandled attribute type! Add me: {(AttributeType) attrType}");
                         throw new Exception($"Add me: {(AttributeType) attrType}");
                         break;
                 }

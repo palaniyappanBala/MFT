@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\Attribute.cs" />
+    <Compile Include="Attributes\ExtendedAttribute.cs" />
+    <Compile Include="Attributes\ExtendedAttributeInformation.cs" />
     <Compile Include="Attributes\FileInfoBase.cs" />
     <Compile Include="Attributes\IndexNodeHeader.cs" />
     <Compile Include="Attributes\IndexRoot.cs" />
