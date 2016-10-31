@@ -35,28 +35,25 @@ namespace MFT.Test
 
             LogManager.Configuration = config;
 
-            mfts = new Dictionary<string, string>();
+            Mfts = new Dictionary<string, string>();
 
-            //     mfts.Add("controller", @"D:\Dropbox\MFTs\controller\$MFT");
-            //   mfts.Add("nfury", @"D:\Dropbox\MFTs\nfury\$MFT");
-            // mfts.Add("nromanoff", @"D:\Dropbox\MFTs\nromanoff\$MFT");
-            mfts.Add("tdungan", @"..\..\TestFiles\tdungan\$MFT");
-            //mfts.Add("blake", @"D:\Dropbox\MFTs\blake\$MFT");
-            mfts.Add("other", @"..\..\TestFiles\$MFT");
+            Mfts.Add("controller", @"D:\Dropbox\MFTs\controller\$MFT");
+            Mfts.Add("nfury", @"D:\Dropbox\MFTs\nfury\$MFT");
+            Mfts.Add("nromanoff", @"D:\Dropbox\MFTs\nromanoff\$MFT");
+            Mfts.Add("tdungan", @"..\..\TestFiles\tdungan\$MFT");
+            Mfts.Add("blake", @"D:\Dropbox\MFTs\blake\$MFT");
+            Mfts.Add("other", @"..\..\TestFiles\$MFT");
         }
 
-        public static string Mft1 = @"..\..\TestFiles\$MFT";
-        public static string Mft2 = @"D:\Code\MFT\MFT.Test\TestFiles\$MFT";
-        public static string Mft3 = @"D:\Temp\$MFT";
 
-        public Dictionary<string, string> mfts = new Dictionary<string, string>();
+        public Dictionary<string, string> Mfts = new Dictionary<string, string>();
 
         [Test]
         public void Something()
         {
             var logger = LogManager.GetCurrentClassLogger();
 
-            foreach (var mft in mfts)
+            foreach (var mft in Mfts)
             {
                 logger.Info($"Processing {mft.Key}");
 

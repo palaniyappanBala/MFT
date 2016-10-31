@@ -46,12 +46,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\Attribute.cs" />
+    <Compile Include="Attributes\FileInfoBase.cs" />
+    <Compile Include="Attributes\IndexNodeHeader.cs" />
+    <Compile Include="Attributes\IndexRoot.cs" />
     <Compile Include="Attributes\Data.cs" />
     <Compile Include="Attributes\DataRun.cs" />
     <Compile Include="Attributes\FileInfo.cs" />
+    <Compile Include="Attributes\IndexAllocation.cs" />
     <Compile Include="Attributes\NonResidentData.cs" />
+    <Compile Include="Attributes\OlbectId.cs" />
     <Compile Include="Attributes\ResidentData.cs" />
     <Compile Include="Attributes\StandardInfo.cs" />
+    <Compile Include="Attributes\VolumeInformation.cs" />
+    <Compile Include="Attributes\VolumeName.cs" />
     <Compile Include="FileRecord.cs" />
     <Compile Include="Mft.cs" />
     <Compile Include="MftEntryInfo.cs" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using MFT.Attributes;
 using NLog;
 
@@ -138,7 +139,7 @@ namespace MFT
                     continue;
                 }
 
-//                if (offset + index == 0x7108)
+//                if (offset + index == 0x8C098)
 //                {
 //                    Debug.WriteLine(1);
 //                }
@@ -161,28 +162,33 @@ namespace MFT
                         Attributes.Add(data);
                         break;
                     case AttributeType.IndexAllocation:
-
+                        var ia = new IndexAllocation(rawAttr);
+                        Attributes.Add(ia);
                         break;
                     case AttributeType.IndexRoot:
-
+                        var ir = new IndexRoot(rawAttr);
+                        Attributes.Add(ir);
                         break;
 
                     case AttributeType.Bitmap:
-
+                        //defer for now
                         break;
 
                     case AttributeType.VolumeVersionObjectId:
-
+                        var oi = new ObjectId(rawAttr);
+                        Attributes.Add(oi);
                         break;
-
                     case AttributeType.SecurityDescriptor:
+                        //https://github.com/libyal/libfwnt/blob/master/documentation/Security%20Descriptor.asciidoc
 
                         break;
                     case AttributeType.VolumeName:
-
+                        var vn = new VolumeName(rawAttr);
+                        Attributes.Add(vn);
                         break;
                     case AttributeType.VolumeInformation:
-
+                        var vi = new VolumeInformation(rawAttr);
+                        Attributes.Add(vi);
                         break;
 
                     case AttributeType.LoggedUtilityStream:

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace MFT
 {
@@ -43,6 +44,14 @@ namespace MFT
             NonResident = rawBytes[0x8] == 1;
 
             NameSize = rawBytes[0x09];
+            var nameOffset = BitConverter.ToUInt16(rawBytes, 0xA);
+
+            Name = string.Empty;
+
+            if (NameSize > 0)
+            {
+                Name = Encoding.Unicode.GetString(rawBytes, nameOffset, NameSize*2);
+            }
 
             AttributeContentLength = BitConverter.ToInt32(rawBytes, 0x10);
             ContentOffset = BitConverter.ToInt16(rawBytes, 0x14);
@@ -52,6 +61,7 @@ namespace MFT
         public int AttributeSize { get; }
         public int AttributeContentLength { get; }
         public int NameSize { get; }
+        public string Name { get; }
         public int AttributeNumber { get; }
 
         public bool NonResident { get; }
@@ -61,7 +71,7 @@ namespace MFT
         public override string ToString()
         {
             return
-                $"AttrType: {AttributeType}, Size: {AttributeSize}, Content size: {AttributeContentLength}, name size: {NameSize}, content offset: {ContentOffset}, non-resident: {NonResident}";
+                $"AttrType: {AttributeType}, Size: {AttributeSize}, Content size: {AttributeContentLength}, name size: {NameSize}, content offset: {ContentOffset}, non-resident: {NonResident}, Name: {Name}";
         }
     }
 }
