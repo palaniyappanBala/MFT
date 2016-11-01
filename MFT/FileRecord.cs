@@ -124,8 +124,8 @@ namespace MFT
 //                    attrSize = BitConverter.ToInt16(rawBytes, index + 4);
 //                }
 
-                Logger.Trace(
-                    $"ActualRecordSize: {ActualRecordSize} attrType: 0x{attrType:X}, size: {attrSize}, index: {index}, offset: 0x{offset:x}, i+o: 0x{index + offset:X}");
+//                Logger.Trace(
+//                    $"ActualRecordSize: {ActualRecordSize} attrType: 0x{attrType:X}, size: {attrSize}, index: {index}, offset: 0x{offset:x}, i+o: 0x{index + offset:X}");
 
                 if ((attrSize == 0) || (attrType == -1))
                 {
@@ -200,10 +200,12 @@ namespace MFT
                         break;
 
                     case AttributeType.AttributeList:
-
+                       var al = new AttributeList(rawAttr);
+                       Attributes.Add(al);
                         break;
 
                     case AttributeType.Ea:
+                        //TODO Finish this
                         var ea = new ExtendedAttribute(rawAttr);
                         Attributes.Add(ea);
                         break;
