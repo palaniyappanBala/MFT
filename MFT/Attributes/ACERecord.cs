@@ -114,9 +114,15 @@ namespace MFT.Attributes
         {
             get
             {
-                var rawSid = RawBytes.Skip(0x8).Take(ACESize - 0x8).ToArray();
+                //var rawSid = RawBytes.Skip(0x8).Take(ACESize - 0x8).ToArray();
 
-                return Helpers.ConvertHexStringToSidString(rawSid);
+                var rawSidBytes = new byte[ACESize - 0x8];
+                Buffer.BlockCopy(RawBytes,0x8,rawSidBytes,0,rawSidBytes.Length);
+
+//                var rawAce = new byte[aceSize];
+//                Buffer.BlockCopy(RawBytes, index, rawAce, 0, (int)aceSize);
+
+                return Helpers.ConvertHexStringToSidString(rawSidBytes);
             }
         }
 

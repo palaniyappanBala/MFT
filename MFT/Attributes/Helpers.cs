@@ -322,15 +322,16 @@ namespace MFT.Attributes
 
             var sidVersion = hex[0].ToString();
 
+            //TODO fix this to use Buffer
             var authId = BitConverter.ToInt32(hex.Skip(4).Take(4).Reverse().ToArray(), 0);
 
             var index = 8;
-
-
+            
             var sid = $"{header}-{sidVersion}-{authId}";
 
             do
             {
+                //TODO fix this to use Buffer
                 var tempAuthHex = hex.Skip(index).Take(4).ToArray();
 
                 var tempAuth = BitConverter.ToUInt32(tempAuthHex, 0);

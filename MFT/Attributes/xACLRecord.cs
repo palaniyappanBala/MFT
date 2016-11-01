@@ -47,7 +47,10 @@ namespace MFT.Attributes
                         break; //ncrunch: no coverage
                     }
                     var aceSize = RawBytes[index + 2];
-                    var rawAce = RawBytes.Skip(index).Take(aceSize).ToArray();
+                  //  var rawAce = RawBytes.Skip(index).Take(aceSize).ToArray();
+
+                    var rawAce = new byte[aceSize];
+                    Buffer.BlockCopy(RawBytes, index, rawAce, 0, (int)aceSize);
 
                     chunks.Add(rawAce);
 

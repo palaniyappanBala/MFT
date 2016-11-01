@@ -59,7 +59,12 @@ namespace MFT.Attributes
             {
                 if ((Control & ControlEnum.SeDaclPresent) == ControlEnum.SeDaclPresent)
                 {
-                    var rawDacl = RawBytes.Skip((int) DaclOffset).Take((int) sizeDacl).ToArray();
+                    //var rawDacla = RawBytes.Skip((int) DaclOffset).Take((int) sizeDacl).ToArray();
+
+                    var rawDacl = new byte[sizeDacl];
+                    Buffer.BlockCopy(RawBytes,(int) DaclOffset, rawDacl, 0,(int) sizeDacl);
+
+
                     return new xACLRecord(rawDacl, xACLRecord.ACLTypeEnum.Discretionary);
                 }
 
@@ -75,7 +80,11 @@ namespace MFT.Attributes
         {
             get
             {
-                var rawGroup = RawBytes.Skip((int) GroupOffset).Take((int) sizeGroupSid).ToArray();
+               // var rawGroup = RawBytes.Skip((int) GroupOffset).Take((int) sizeGroupSid).ToArray();
+
+                var rawGroup = new byte[sizeGroupSid];
+                Buffer.BlockCopy(RawBytes, (int)GroupOffset, rawGroup, 0, (int)sizeGroupSid);
+
                 return Helpers.ConvertHexStringToSidString(rawGroup);
             }
         }
@@ -88,7 +97,11 @@ namespace MFT.Attributes
         {
             get
             {
-                var rawOwner = RawBytes.Skip((int) OwnerOffset).Take((int) sizeOwnerSid).ToArray();
+               // var rawOwner = RawBytes.Skip((int) OwnerOffset).Take((int) sizeOwnerSid).ToArray();
+
+                var rawOwner = new byte[sizeOwnerSid];
+                Buffer.BlockCopy(RawBytes, (int)OwnerOffset, rawOwner, 0, (int)sizeOwnerSid);
+                
                 return Helpers.ConvertHexStringToSidString(rawOwner);
             }
         }
@@ -106,7 +119,11 @@ namespace MFT.Attributes
             {
                 if ((Control & ControlEnum.SeSaclPresent) == ControlEnum.SeSaclPresent)
                 {
-                    var rawSacl = RawBytes.Skip((int) SaclOffset).Take((int) sizeSacl).ToArray();
+                   // var rawSacl = RawBytes.Skip((int) SaclOffset).Take((int) sizeSacl).ToArray();
+
+                    var rawSacl = new byte[sizeSacl];
+                    Buffer.BlockCopy(RawBytes, (int)SaclOffset, rawSacl, 0, (int)sizeSacl);
+                    
                     return new xACLRecord(rawSacl, xACLRecord.ACLTypeEnum.Security);
                 }
                 return null;
