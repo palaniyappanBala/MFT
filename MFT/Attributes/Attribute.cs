@@ -17,7 +17,7 @@ namespace MFT
         IndexRoot = 0x90,
         IndexAllocation = 0xa0,
         Bitmap = 0xb0,
-        SymbolicLinkReparsePoint = 0xc0,
+        ReparsePoint = 0xc0,
         EaInformation = 0xd0,
         Ea = 0xe0,
         PropertySet = 0xf0,

@@ -38,11 +38,11 @@ namespace MFT.Test
             Mfts = new Dictionary<string, string>();
 
          //   Mfts.Add("controller", @"D:\Dropbox\MFTs\controller\$MFT");
-           // Mfts.Add("nfury", @"D:\Dropbox\MFTs\nfury\$MFT");
-            //Mfts.Add("nromanoff", @"D:\Dropbox\MFTs\nromanoff\$MFT");
-            Mfts.Add("tdungan", @"..\..\TestFiles\tdungan\$MFT");
-            //Mfts.Add("blake", @"D:\Dropbox\MFTs\blake\$MFT");
-            Mfts.Add("other", @"..\..\TestFiles\$MFT");
+         //   Mfts.Add("nfury", @"D:\Dropbox\MFTs\nfury\$MFT");
+        //    Mfts.Add("nromanoff", @"D:\Dropbox\MFTs\nromanoff\$MFT");
+        //    Mfts.Add("tdungan", @"..\..\TestFiles\tdungan\$MFT");
+            Mfts.Add("blake", @"D:\Dropbox\MFTs\blake\$MFT");
+       //     Mfts.Add("other", @"..\..\TestFiles\$MFT");
         }
 
 

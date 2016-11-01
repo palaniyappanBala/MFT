@@ -57,8 +57,10 @@
     <Compile Include="Attributes\DataRun.cs" />
     <Compile Include="Attributes\FileInfo.cs" />
     <Compile Include="Attributes\IndexAllocation.cs" />
+    <Compile Include="Attributes\LoggedUtilityStream.cs" />
     <Compile Include="Attributes\NonResidentData.cs" />
     <Compile Include="Attributes\OlbectId.cs" />
+    <Compile Include="Attributes\ReparsePoint.cs" />
     <Compile Include="Attributes\ResidentData.cs" />
     <Compile Include="Attributes\StandardInfo.cs" />
     <Compile Include="Attributes\VolumeInformation.cs" />

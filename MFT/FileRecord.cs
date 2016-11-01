@@ -158,7 +158,7 @@ namespace MFT
                         Attributes.Add(fi);
                         break;
                     case AttributeType.Data:
-                        var data = new Data(rawAttr);
+                        var data = new Data(rawAttr);                       
                         Attributes.Add(data);
                         break;
                     case AttributeType.IndexAllocation:
@@ -192,11 +192,13 @@ namespace MFT
                         break;
 
                     case AttributeType.LoggedUtilityStream:
-
+                        var lus = new LoggedUtilityStream(rawAttr);
+                        Attributes.Add(lus);
                         break;
 
-                    case AttributeType.SymbolicLinkReparsePoint:
-
+                    case AttributeType.ReparsePoint:
+                        var rp = new ReparsePoint(rawAttr);
+                        Attributes.Add(rp);
                         break;
 
                     case AttributeType.AttributeList:
