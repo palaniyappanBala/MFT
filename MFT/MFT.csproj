@@ -48,6 +48,7 @@
     <Compile Include="Attributes\Attribute.cs" />
     <Compile Include="Attributes\AttributeList.cs" />
     <Compile Include="Attributes\AttributeListEntry.cs" />
+    <Compile Include="Attributes\Bitmap.cs" />
     <Compile Include="Attributes\ExtendedAttribute.cs" />
     <Compile Include="Attributes\ExtendedAttributeInformation.cs" />
     <Compile Include="Attributes\FileInfoBase.cs" />

@@ -171,7 +171,8 @@ namespace MFT
                         break;
 
                     case AttributeType.Bitmap:
-                        //defer for now
+                       var bm = new Bitmap(rawAttr);
+                        Attributes.Add(bm);
                         break;
 
                     case AttributeType.VolumeVersionObjectId:
