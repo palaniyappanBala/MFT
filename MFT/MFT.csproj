@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\ACERecord.cs" />
     <Compile Include="Attributes\Attribute.cs" />
     <Compile Include="Attributes\AttributeList.cs" />
     <Compile Include="Attributes\AttributeListEntry.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Attributes\ExtendedAttribute.cs" />
     <Compile Include="Attributes\ExtendedAttributeInformation.cs" />
     <Compile Include="Attributes\FileInfoBase.cs" />
+    <Compile Include="Attributes\Helpers.cs" />
     <Compile Include="Attributes\IndexNodeHeader.cs" />
     <Compile Include="Attributes\IndexRoot.cs" />
     <Compile Include="Attributes\Data.cs" />
@@ -63,9 +65,12 @@
     <Compile Include="Attributes\OlbectId.cs" />
     <Compile Include="Attributes\ReparsePoint.cs" />
     <Compile Include="Attributes\ResidentData.cs" />
+    <Compile Include="Attributes\SecurityDescriptor.cs" />
+    <Compile Include="Attributes\SKSecurityDescriptor.cs" />
     <Compile Include="Attributes\StandardInfo.cs" />
     <Compile Include="Attributes\VolumeInformation.cs" />
     <Compile Include="Attributes\VolumeName.cs" />
+    <Compile Include="Attributes\xACLRecord.cs" />
     <Compile Include="FileRecord.cs" />
     <Compile Include="Mft.cs" />
     <Compile Include="MftEntryInfo.cs" />

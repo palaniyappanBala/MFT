@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using MFT.Attributes;
 using NLog;
+using Attribute = MFT.Attributes.Attribute;
 
 namespace MFT
 {
@@ -181,6 +182,8 @@ namespace MFT
                         break;
                     case AttributeType.SecurityDescriptor:
                         //https://github.com/libyal/libfwnt/blob/master/documentation/Security%20Descriptor.asciidoc
+                        var sd = new SecurityDescriptor(rawAttr);
+                        Attributes.Add(sd);
 
                         break;
                     case AttributeType.VolumeName:
