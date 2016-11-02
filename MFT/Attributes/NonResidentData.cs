@@ -7,8 +7,6 @@ namespace MFT.Attributes
     {
         public NonResidentData(byte[] rawBytes)
         {
-            //TODO refactor this to only deal with resident data and not attribute header lengths and whatnot
-
             StartingVirtualClusterNumber = BitConverter.ToUInt64(rawBytes, 0x10);
             EndingVirtualClusterNumber = BitConverter.ToUInt64(rawBytes, 0x18);
 

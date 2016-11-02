@@ -6,7 +6,11 @@ namespace MFT.Attributes
     {
         public ObjectId(byte[] rawBytes) : base(rawBytes)
         {
-            var residentData = new ResidentData(rawBytes);
+            var content = new byte[AttributeContentLength];
+
+            Buffer.BlockCopy(rawBytes, ContentOffset, content, 0, AttributeContentLength);
+
+            var residentData = new ResidentData(content);
 
             var guidRaw0 = new byte[16];
             var guidRaw1 = new byte[16];

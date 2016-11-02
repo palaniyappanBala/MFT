@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using NLog;
 
 namespace MFT
@@ -19,6 +20,14 @@ namespace MFT
             var logger = LogManager.GetCurrentClassLogger();
 
             //TODO add parallelism
+
+            var totalFileRecordChunks =rawbytes.Length/4096;
+
+            var parallelCount = Environment.ProcessorCount/2;
+
+            var chunksToProcessCount = totalFileRecordChunks / parallelCount;
+
+            Debug.WriteLine(chunksToProcessCount);
 
             while (index < rawbytes.Length)
             {

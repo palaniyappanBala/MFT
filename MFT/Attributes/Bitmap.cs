@@ -12,20 +12,22 @@ namespace MFT.Attributes
 
         public Bitmap(byte[] rawBytes) : base(rawBytes)
         {
-            //TODO fix this after refactoring these 2 classes
             if (NonResident)
             {
+        
                 NonResidentData = new NonResidentData(rawBytes);
             }
             else
             {
-                ResidentData = new ResidentData(rawBytes);
+                var content = new byte[AttributeContentLength];
+
+                Buffer.BlockCopy(rawBytes, ContentOffset, content, 0, AttributeContentLength);
+
+                ResidentData = new ResidentData(content);
             }
 
 
-            var content = new byte[AttributeContentLength];
-
-            Buffer.BlockCopy(rawBytes, ContentOffset, content, 0, AttributeContentLength);
+           
 
             
 

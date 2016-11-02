@@ -8,6 +8,7 @@ namespace MFT.Attributes
 {
     public class LoggedUtilityStream : Attribute
     {
+        public ResidentData ResidentData { get; }
 
 
         public LoggedUtilityStream(byte[] rawBytes) : base(rawBytes)
@@ -16,7 +17,9 @@ namespace MFT.Attributes
 
             Buffer.BlockCopy(rawBytes, ContentOffset, content, 0, AttributeContentLength);
 
-            //TODO add ResidentData object to hold what is there
+            ResidentData = new ResidentData(content);
+
+
 
         }
 
