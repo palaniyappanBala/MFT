@@ -111,19 +111,11 @@ namespace MFT
 
             var index = (int) FirstAttributeOffset;
 
-//            if (offset == 0x2DC00)
-//                Debug.WriteLine(1);
-
             while (index < ActualRecordSize)
             {
                 var attrType = BitConverter.ToInt32(rawBytes, index);
 
                 var attrSize = BitConverter.ToInt32(rawBytes, index + 4);
-
-//                if (attrSize > 1024 && attrType != -1)
-//                {
-//                    attrSize = BitConverter.ToInt16(rawBytes, index + 4);
-//                }
 
 //                Logger.Trace(
 //                    $"ActualRecordSize: {ActualRecordSize} attrType: 0x{attrType:X}, size: {attrSize}, index: {index}, offset: 0x{offset:x}, i+o: 0x{index + offset:X}");
@@ -139,11 +131,6 @@ namespace MFT
 
                     continue;
                 }
-
-//                if (offset + index == 0x8C098)
-//                {
-//                    Debug.WriteLine(1);
-//                }
 
                 var rawAttr = new byte[attrSize];
                 Buffer.BlockCopy(rawBytes, index, rawAttr, 0, attrSize);
@@ -181,7 +168,6 @@ namespace MFT
                         Attributes.Add(oi);
                         break;
                     case AttributeType.SecurityDescriptor:
-                        //https://github.com/libyal/libfwnt/blob/master/documentation/Security%20Descriptor.asciidoc
                         var sd = new SecurityDescriptor(rawAttr);
                         Attributes.Add(sd);
 
@@ -227,15 +213,18 @@ namespace MFT
                         break;
                 }
 
-
                 index += attrSize;
             }
+
+            SlackStartOffset = index;
 
             //rest is slack. handle here?
             Logger.Trace($"Slack starts at {index} i+o: 0x{index + offset:X}");
         }
 
         public List<Attribute> Attributes { get; }
+
+        public int SlackStartOffset { get; }
 
         public int Offset { get; private set; }
         public int EntryNumber { get; }
