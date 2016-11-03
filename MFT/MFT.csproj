@@ -52,13 +52,13 @@
     <Compile Include="Attributes\Bitmap.cs" />
     <Compile Include="Attributes\ExtendedAttribute.cs" />
     <Compile Include="Attributes\ExtendedAttributeInformation.cs" />
-    <Compile Include="Attributes\FileInfoBase.cs" />
+    <Compile Include="Attributes\FileInfo.cs" />
     <Compile Include="Attributes\Helpers.cs" />
     <Compile Include="Attributes\IndexNodeHeader.cs" />
     <Compile Include="Attributes\IndexRoot.cs" />
     <Compile Include="Attributes\Data.cs" />
     <Compile Include="Attributes\DataRun.cs" />
-    <Compile Include="Attributes\FileInfo.cs" />
+    <Compile Include="Attributes\FileName.cs" />
     <Compile Include="Attributes\IndexAllocation.cs" />
     <Compile Include="Attributes\LoggedUtilityStream.cs" />
     <Compile Include="Attributes\NonResidentData.cs" />

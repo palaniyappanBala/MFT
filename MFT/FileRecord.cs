@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using MFT.Attributes;
 using NLog;
 using Attribute = MFT.Attributes.Attribute;
@@ -20,8 +21,8 @@ namespace MFT
 
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        private readonly int _baadSig = 0x44414142;
-        private readonly int _fileSig = 0x454c4946;
+        private static readonly int _baadSig = 0x44414142;
+        private static readonly int _fileSig = 0x454c4946;
 
         public FileRecord(byte[] rawBytes, int offset)
         {
@@ -142,7 +143,7 @@ namespace MFT
                         Attributes.Add(si);
                         break;
                     case AttributeType.FileName:
-                        var fi = new FileInfo(rawAttr);
+                        var fi = new FileName(rawAttr);
                         Attributes.Add(fi);
                         break;
                     case AttributeType.Data:
@@ -239,5 +240,30 @@ namespace MFT
         public int LogSequenceNumber { get; }
         public short FixupEntryCount { get; }
         public short FixupOffset { get; }
+
+        public override string ToString()
+        {
+//            var fns = Attributes.Where(t => t is FileName).ToList();
+//            var name = string.Empty;
+//
+//            foreach (var attribute in fns)
+//            {
+//                var fn = attribute as FileName;
+//
+//                if (fn.FileInfo.NameType == NameTypes.Dos_Windows)
+//                {
+//                    name = fn.FileInfo.FileName;
+//                }
+//            }
+
+            var std = (StandardInfo) Attributes.Single(t => t is StandardInfo);
+
+
+
+
+            return $"Entry #: {EntryNumber}, std: {std}";
+        }
     }
+
+    
 }

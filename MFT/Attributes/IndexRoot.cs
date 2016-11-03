@@ -49,7 +49,7 @@ namespace MFT.Attributes
 
             IndexNodeHeader = new IndexNodeHeader(rawIndexNodeHeader);
 
-            FileInfoRecords = new List<FileInfoBase>();
+            FileInfoRecords = new List<FileInfo>();
 
             //finally, an array of index values
             while (index < rawBytes.Length)
@@ -69,7 +69,7 @@ namespace MFT.Attributes
 
                     Buffer.BlockCopy(rawBytes, index + 16, buff, 0, keyDataSize);
 
-                    var fi = new FileInfoBase(buff);
+                    var fi = new FileInfo(buff);
                     FileInfoRecords.Add(fi);
                 }
 
@@ -82,7 +82,7 @@ namespace MFT.Attributes
         public int EntrySize { get; }
         public int NumberClusterBlocks { get; }
 
-        public List<FileInfoBase> FileInfoRecords { get; }
+        public List<FileInfo> FileInfoRecords { get; }
 
         public CollationTypes CollationType { get; }
     }

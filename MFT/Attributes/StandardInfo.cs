@@ -23,7 +23,9 @@ namespace MFT.Attributes
             NotContentIndexed = 0x02000,
             Encrypted = 0x04000,
             Unknown = 0x08000,
-            Virtual = 0x010000
+            Virtual = 0x010000,
+            IsDirectory = 0x10000000,
+            IsIndexView = 0x20000000,
         }
 
         public StandardInfo(byte[] rawBytes) : base(rawBytes)
@@ -46,6 +48,11 @@ namespace MFT.Attributes
             SecurityId = BitConverter.ToInt32(rawBytes, 0x4C);
             QuotaCharged = BitConverter.ToInt32(rawBytes, 0x50);
             UpdateSequenceNumber = BitConverter.ToInt64(rawBytes, 0x58);
+        }
+
+        public override string ToString()
+        {
+            return $"Flags: {Flags}, CreatedOn: {CreatedOn}, ContentModifiedOn: {ContentModifiedOn}, RecordModifiedOn: {RecordModifiedOn}, LastAccessedOn: {LastAccessedOn}";
         }
 
         public int MaxVersion { get; }
