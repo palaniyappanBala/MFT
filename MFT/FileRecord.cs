@@ -69,7 +69,7 @@ namespace MFT
 
             MFTRecordToBaseRecord = new MftEntryInfo(entryBytes);
 
-            FirstAvailablAttribueId = BitConverter.ToInt16(rawBytes, 0x28);
+            FirstAvailableAttribueId = BitConverter.ToInt16(rawBytes, 0x28);
 
             EntryNumber = BitConverter.ToInt32(rawBytes, 0x2c);
 
@@ -233,7 +233,7 @@ namespace MFT
         public int ActualRecordSize { get; }
         public int AllocatedRecordSize { get; }
         public MftEntryInfo MFTRecordToBaseRecord { get; }
-        public short FirstAvailablAttribueId { get; }
+        public short FirstAvailableAttribueId { get; }
         public short ReferenceCount { get; }
         public short SequenceNumber { get; }
         public EntryFlag EntryFlags { get; }
