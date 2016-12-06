@@ -52,7 +52,7 @@ namespace MFT.Attributes
 
         public override string ToString()
         {
-            return $"Flags: {Flags}, CreatedOn: {CreatedOn}, ContentModifiedOn: {ContentModifiedOn}, RecordModifiedOn: {RecordModifiedOn}, LastAccessedOn: {LastAccessedOn}";
+            return $"Flags: {Flags}, CreatedOn: {CreatedOn:O}, ContentModifiedOn: {ContentModifiedOn:O}, RecordModifiedOn: {RecordModifiedOn:O}, LastAccessedOn: {LastAccessedOn:O}";
         }
 
         public int MaxVersion { get; }

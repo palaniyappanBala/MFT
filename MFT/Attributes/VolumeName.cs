@@ -4,16 +4,16 @@ namespace MFT.Attributes
 {
     public class VolumeName : Attribute
     {
-        public string Name { get; }
+        public string VolName { get; }
         public VolumeName(byte[] rawBytes) : base(rawBytes)
         {
             var residentData = new ResidentData(rawBytes);
 
-            Name = string.Empty;
+            VolName = string.Empty;
 
             if (residentData.Data.Length > 0)
             {
-                Name = Encoding.Unicode.GetString(residentData.Data);
+                VolName = Encoding.Unicode.GetString(residentData.Data);
             }
             
         }

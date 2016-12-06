@@ -47,7 +47,7 @@ namespace MFT
             FixupOffset = BitConverter.ToInt16(rawBytes, 2);
             FixupEntryCount = BitConverter.ToInt16(rawBytes, 4);
 
-            LogSequenceNumber = BitConverter.ToInt32(rawBytes, 0x8);
+            LogSequenceNumber = BitConverter.ToInt64(rawBytes, 0x8);
 
             SequenceNumber = BitConverter.ToInt16(rawBytes, 0x10);
 
@@ -141,10 +141,44 @@ namespace MFT
                     case AttributeType.StandardInformation:
                         var si = new StandardInfo(rawAttr);
                         Attributes.Add(si);
+
+                        SILastAccessedOn = si.LastAccessedOn;
+                        SICreatedOn = si.CreatedOn;
+                        SIRecordModifiedOn = si.RecordModifiedOn;
+                        SIContentModifiedOn = si.ContentModifiedOn;
+
                         break;
                     case AttributeType.FileName:
                         var fi = new FileName(rawAttr);
                         Attributes.Add(fi);
+
+                        if ((fi.FileInfo.NameType & NameTypes.Windows) == NameTypes.Windows)
+                        {
+                            FName = fi.FileInfo.FileName;
+                        }
+
+                        //if (fi.FileInfo.LastAccessedOn.UtcDateTime != SILastAccessedOn.UtcDateTime)
+                        //{
+                        FNLastAccessedOn = fi.FileInfo.LastAccessedOn;
+                        //}
+
+                        //if (fi.FileInfo.CreatedOn.UtcDateTime != SICreatedOn.UtcDateTime)
+                        //{
+                        FNCreatedOn = fi.FileInfo.CreatedOn;
+                        //}
+
+                        //if (fi.FileInfo.RecordModifiedOn.UtcDateTime != SIRecordModifiedOn.UtcDateTime)
+                        //{
+                        FNRecordModifiedOn = fi.FileInfo.RecordModifiedOn;
+                        //}
+
+
+                        //if (fi.FileInfo.ContentModifiedOn.UtcDateTime != SIContentModifiedOn.UtcDateTime)
+                        //{
+                        FNContentModifiedOn = fi.FileInfo.ContentModifiedOn;
+                        //}
+
+
                         break;
                     case AttributeType.Data:
                         var data = new Data(rawAttr);                       
@@ -237,9 +271,24 @@ namespace MFT
         public short ReferenceCount { get; }
         public short SequenceNumber { get; }
         public EntryFlag EntryFlags { get; }
-        public int LogSequenceNumber { get; }
+        public long LogSequenceNumber { get; }
         public short FixupEntryCount { get; }
         public short FixupOffset { get; }
+
+
+        //meta stuff
+
+            public string FName { get; }
+
+        public DateTimeOffset SICreatedOn { get; }
+        public DateTimeOffset SIContentModifiedOn { get; }
+        public DateTimeOffset SILastAccessedOn { get; }
+        public DateTimeOffset SIRecordModifiedOn { get; }
+
+        public DateTimeOffset FNCreatedOn { get; }
+        public DateTimeOffset FNContentModifiedOn { get; }
+        public DateTimeOffset FNLastAccessedOn { get; }
+        public DateTimeOffset FNRecordModifiedOn { get; }
 
         public override string ToString()
         {
@@ -257,11 +306,9 @@ namespace MFT
 //            }
 
             var std = (StandardInfo) Attributes.Single(t => t is StandardInfo);
-
-
-
-
-            return $"Entry #: {EntryNumber}, std: {std}";
+            var fn = (FileName) Attributes.First(t => t is FileName);
+            
+            return $"fname: {FName} Entry #: {EntryNumber}, std: {std}, fn: {fn}";
         }
     }
 

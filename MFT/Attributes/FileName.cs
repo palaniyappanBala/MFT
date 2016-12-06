@@ -11,8 +11,15 @@ namespace MFT.Attributes
             Buffer.BlockCopy(rawBytes, ContentOffset, content, 0, rawBytes.Length - ContentOffset);
 
             FileInfo = new FileInfo(content);
+
+            
         }
 
         public FileInfo FileInfo { get; }
+
+        public override string ToString()
+        {
+            return $"FileInfo: {FileInfo}";
+        }
     }
 }

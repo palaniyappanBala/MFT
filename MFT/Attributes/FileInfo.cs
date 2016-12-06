@@ -65,5 +65,10 @@ namespace MFT.Attributes
         public StandardInfo.Flag Flags { get; }
 
         public MftEntryInfo MFTRecordToBaseRecord { get; }
+
+        public override string ToString()
+        {
+            return $"File name: {FileName} Flags: {Flags}, CreatedOn: {CreatedOn:O}, ContentModifiedOn: {ContentModifiedOn:O}, RecordModifiedOn: {RecordModifiedOn:O}, LastAccessedOn: {LastAccessedOn:O}";
+        }
     }
 }

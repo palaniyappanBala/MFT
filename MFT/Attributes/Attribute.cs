@@ -36,6 +36,7 @@ namespace MFT.Attributes
     {
         protected Attribute(byte[] rawBytes)
         {
+
             AttributeNumber = BitConverter.ToInt16(rawBytes, 0xE);
 
             AttributeType = (AttributeType) BitConverter.ToInt32(rawBytes, 0);
